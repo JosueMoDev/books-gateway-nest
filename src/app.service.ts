@@ -7,8 +7,8 @@ export class AppService {
   constructor(
     @Inject('BOOKS_SERVICE') private readonly booksClient: ClientProxy,
   ) {}
-  async getBooks() {
-    const books$ = this.booksClient.send('books_find_all', {});
+  async findOneBook(id: string) {
+    const books$ = this.booksClient.send('find_one_book', { id });
     return firstValueFrom(books$);
   }
 }

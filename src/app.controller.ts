@@ -1,12 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('books')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('books')
-  async getAllBooks() {
-    return this.appService.getBooks();
+  @Get('find-one/:id')
+  async getFindOneBook(@Param('id') id: string) {
+    return this.appService.findOneBook(id);
   }
 }
